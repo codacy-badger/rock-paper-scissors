@@ -31,12 +31,24 @@ class Client {
         }
     }
 
+    private String printMenu() {
+        BetOption[] bets = new AvailableBetOption().getAll();
+        StringBuffer sb = new StringBuffer();
+        sb.append("Choose a number:");
+        for (int i = 0; i < bets.length; i++) {
+            sb.append(" (" + i + ")" + bets[i]);
+        }
+        sb.append("\n> ");
+        return sb.toString();
+    }
+
     public void run() throws ServerException {
         try {
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter your name to play Rock Paper Scissors!\n> ");
             String playerName = input.readLine();
-            System.out.print("Choose a number: (1)Rock (2)Scissors (3)Paper\n> ");
+
+            System.out.print(printMenu());
             String bet = input.readLine();
 
             Socket socket = openConnection();

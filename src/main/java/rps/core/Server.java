@@ -1,5 +1,7 @@
 package rps;
 
+import rps.BetOption;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,7 +18,7 @@ class Server {
     private Socket _socket;
     private ServerSocket _server;
     private PlayerStorage _players = new PlayerStorage();
-    private BetOption[] _serverBetOptions = new BetOption[] {new Rock(), new Scissors(), new Paper()};
+    private BetOption[] _availableBets = new AvailableBetOption().getAll();
 
     private class ClientRequest {
         private void registerNewPlayer(String playerName) {
@@ -43,19 +45,17 @@ class Server {
         }
 
         private BetOption parsePlayerBet(String bet) throws InvalidBetException {
-            if (bet.equals("1")) {
-                return new Rock();
-            } else if (bet.equals("2")) {
-                return new Scissors();
-            } else if (bet.equals("3")) {
-                return new Paper();
+            for (int i = 0; i < _availableBets.length; i++) {
+                if (bet.equals(Integer.toString(i))) {
+                    return _availableBets[i];
+                }
             }
             throw new InvalidBetException(bet);
         }
 
         private BetOption serverBet() {
-            int index = ThreadLocalRandom.current().nextInt(0, _serverBetOptions.length);
-            return _serverBetOptions[index];
+            int index = ThreadLocalRandom.current().nextInt(0, _availableBets.length);
+            return _availableBets[index];
         }
 
         private void makeBet(PrintStream out, String playerBet) {
