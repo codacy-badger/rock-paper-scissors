@@ -23,13 +23,13 @@ public class PlayerStorage {
         throw new PlayerException(name);
     }
 
-    public void removePlayer(Player player) throws PlayerException {
+    public void removePlayer(Player player) throws PlayerNotFoundException {
         String name = player.getName();
         if (_players.containsKey(name)) {
             _players.remove(name);
             return;
         }
-        throw new PlayerException(name);
+        throw new PlayerNotFoundException(name);
     }
 
 }
