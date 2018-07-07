@@ -5,14 +5,20 @@ This is a Rock, Paper, Scissors multiplayer game server and client.
 Java 8
 
 ## Build
-mvn package
-
+```
+> mvn package
+```
 ## Test
-mvn test
+```
+> mvn test
+```
 ## Run Server
+```
 > cd target
 > java -jar server.jar
-
+```
 ## Run Client(s)
+```
 > cd target
-> java -jar rps.client.jar
+> java -jar client.jar
+```
