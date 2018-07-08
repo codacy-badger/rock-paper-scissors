@@ -11,8 +11,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadLocalRandom;
 
 class Server {
-    private final int PORT = 58038;
-
     private boolean _running = true;
     private ServerSocket _server;
     private PlayerStorage _players = new PlayerStorage();
@@ -95,7 +93,7 @@ class Server {
     public void start() throws ServerException {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         try {
-            _server = new ServerSocket(PORT);
+            _server = new ServerSocket(Utils.PORT);
             System.out.println("Waiting for connections...");
             while (_running) {
                 Socket socket = _server.accept();
@@ -112,7 +110,7 @@ class Server {
             } catch (IOException ee) {
                 throw new ServerException(ee.getMessage());
             } catch (NullPointerException e) {
-                throw new ServerException("Port is already being used.");
+                throw new ServerException("Port " + Utils.PORT + "is already being used.");
             }
         }
     }

@@ -9,13 +9,9 @@ import java.io.DataOutputStream;
 import java.io.PrintStream;
 
 class Client {
-    private final int TIMEOUT = 5000;
-    private final int PORT = 58038;
-    private final String HOSTNAME = "localhost";
-
     private Socket openConnection() throws IOException {
         Socket socket = new Socket();
-        socket.connect(new InetSocketAddress(HOSTNAME, PORT), TIMEOUT);
+        socket.connect(new InetSocketAddress(Utils.HOSTNAME, Utils.PORT), Utils.TIMEOUT);
         return socket;
     }
 
