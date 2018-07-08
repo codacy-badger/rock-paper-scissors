@@ -1,7 +1,5 @@
 package rps;
 
-import rps.BetOption;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -25,7 +23,7 @@ class Server {
             try {
                 Player player = new RegisteredPlayer(playerName);
                 _players.addPlayer(player);
-            } catch (PlayerException e) {
+            } catch (DuplicatePlayerException e) {
                 System.err.println("Cannot register player: " + e.getMessage());
             }
         }

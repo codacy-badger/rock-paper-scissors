@@ -1,11 +1,11 @@
 package rps;
 
-public class PlayerException extends Exception {
+public class DuplicatePlayerException extends Exception {
     private static final long serialVersionUID = 201807051252L;
 
     private final String _message;
 
-    public PlayerException(String message) {
+    public DuplicatePlayerException(String message) {
         _message = message;
     }
 
