@@ -3,6 +3,7 @@ This is a Rock, Paper, Scissors multiplayer game.
 
 ## Prerequisites
 Java 8
+<br/>
 Maven
 
 ## Build
