@@ -66,6 +66,7 @@ class Client {
                 out.close();
                 socket.close();
             }
+            input.close();
         } catch (IOException e) {
             throw new ServerException(e.getMessage());
         }
