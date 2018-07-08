@@ -19,7 +19,7 @@ class Client {
         return socket;
     }
 
-    private void makeServerResquest(PrintStream out, String playerName, String bet) {
+    private void makeServerRequest(PrintStream out, String playerName, String bet) {
         out.println(playerName + "-" + bet);
     }
 
@@ -42,25 +42,30 @@ class Client {
         return sb.toString();
     }
 
-    public void run() throws ServerException {
+    public void start() throws ServerException {
         try {
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter your name to play Rock Paper Scissors!\n> ");
             String playerName = input.readLine();
 
-            System.out.print(printMenu());
-            String bet = input.readLine();
+            while (true) {
+                System.out.print(printMenu());
+                String bet = input.readLine();
+                if (bet.equals("q")) {
+                    break;
+                }
 
-            Socket socket = openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintStream out = new PrintStream(new DataOutputStream(socket.getOutputStream()));
+                Socket socket = openConnection();
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                PrintStream out = new PrintStream(new DataOutputStream(socket.getOutputStream()));
 
-            makeServerResquest(out, playerName, bet);
-            printServerResponse(in);
+                makeServerRequest(out, playerName, bet);
+                printServerResponse(in);
 
-            in.close();
-            out.close();
-            socket.close();
+                in.close();
+                out.close();
+                socket.close();
+            }
         } catch (IOException e) {
             throw new ServerException(e.getMessage());
         }

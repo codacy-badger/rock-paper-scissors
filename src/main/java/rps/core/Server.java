@@ -13,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 class Server {
     private final int PORT = 58038;
 
+    private boolean _running = true;
     private Socket _socket;
     private ServerSocket _server;
     private PlayerStorage _players = new PlayerStorage();
@@ -90,25 +91,31 @@ class Server {
         }
     }
 
-    public void run() throws ServerException {
+    public void stop() {
+        _running = false;
+    }
+
+    public void start() throws ServerException {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         try {
             _server = new ServerSocket(PORT);
             System.out.println("Waiting for connections...");
-            while (true) {
+            while (_running) {
                 _socket = _server.accept();
                 executor.submit(() -> {
                     new ClientRequest().process();
                 });
             }
         } catch (IOException e) {
+            throw new ServerException(e.getMessage());
+        } finally {
             try {
                 _socket.close();
                 _server.close();
                 executor.shutdownNow();
             } catch (IOException ee) {
                 throw new ServerException(ee.getMessage());
-            } catch (NullPointerException ee) {
+            } catch (NullPointerException e) {
                 throw new ServerException("Port is already being used.");
             }
         }
