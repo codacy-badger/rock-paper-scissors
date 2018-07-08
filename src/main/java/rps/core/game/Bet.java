@@ -19,8 +19,7 @@ public class Bet {
     }
 
     public String winner() {
-        boolean tie = _clientBet.equals(_serverBet);
-        if (tie) {
+        if (_clientBet.equals(_serverBet)) {
             return "tie. We both chose " + _serverBet + ".";
         }
         for (BetOption betAdvantage : _clientBet.hasAnEdge()) {

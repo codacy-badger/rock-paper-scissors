@@ -1,11 +1,11 @@
 package rps;
 
-public class ServerException extends Exception {
+public class RpsException extends Exception {
 	private static final long serialVersionUID = 201807051252L;
 
 	private final String _message;
 
-	public ServerException(String message) {
+	public RpsException(String message) {
 		_message = message;
 	}
 

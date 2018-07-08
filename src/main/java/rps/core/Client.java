@@ -21,7 +21,7 @@ class Client {
 
     private void printServerResponse(BufferedReader in) throws IOException {
         int value = 0;
-        while((value = in.read()) != -1) {
+        while ((value = in.read()) != -1) {
             char c = (char) value;
             System.out.print(c);
         }
@@ -38,7 +38,7 @@ class Client {
         return sb.toString();
     }
 
-    public void start() throws ServerException {
+    public void start() throws RpsException {
         try {
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter your name to play Rock Paper Scissors!\n> ");
@@ -64,7 +64,7 @@ class Client {
             }
             input.close();
         } catch (IOException e) {
-            throw new ServerException(e.getMessage());
+            throw new RpsException(e.getMessage());
         }
     }
 }

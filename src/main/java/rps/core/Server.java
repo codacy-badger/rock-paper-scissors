@@ -90,7 +90,7 @@ class Server {
         _running = false;
     }
 
-    public void start() throws ServerException {
+    public void start() throws RpsException {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         try {
             _server = new ServerSocket(Utils.PORT);
@@ -102,15 +102,15 @@ class Server {
                 });
             }
         } catch (IOException e) {
-            throw new ServerException(e.getMessage());
+            throw new RpsException(e.getMessage());
         } finally {
             try {
                 _server.close();
                 executor.shutdownNow();
             } catch (IOException ee) {
-                throw new ServerException(ee.getMessage());
+                throw new RpsException(ee.getMessage());
             } catch (NullPointerException e) {
-                throw new ServerException("Port " + Utils.PORT + "is already being used.");
+                throw new RpsException("Port " + Utils.PORT + "is already being used.");
             }
         }
     }

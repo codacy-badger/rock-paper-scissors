@@ -4,10 +4,10 @@ public class AppClient {
     public static void main(String[] args) {
         try {
             new Client().start();
-        } catch (ServerException e) {
+        } catch (RpsException e) {
             System.err.println("Error: " + e.getMessage());
         } finally {
-            System.out.println("------ Client(Off) -----");
+            System.out.println("----- Client(Off) -----");
         }
     }
 }
