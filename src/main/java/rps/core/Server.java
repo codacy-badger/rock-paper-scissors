@@ -14,7 +14,6 @@ class Server {
     private final int PORT = 58038;
 
     private boolean _running = true;
-    private Socket _socket;
     private ServerSocket _server;
     private PlayerStorage _players = new PlayerStorage();
     private BetOption[] _availableBets = new AvailableBetOption().getAll();
@@ -68,10 +67,9 @@ class Server {
             }
         }
 
-        private void process() {
-            try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(_socket.getInputStream()));
-                PrintStream out = new PrintStream(_socket.getOutputStream());
+        private void process(Socket socket) {
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                 PrintStream out = new PrintStream(socket.getOutputStream())) {
 
                 String playerNameAndBet = in.readLine();
                 String[] split = playerNameAndBet.split("-");
@@ -82,9 +80,7 @@ class Server {
                 validatePlayer(out, playerName);
                 makeBet(out, playerBet);
 
-                in.close();
-                out.close();
-                _socket.close();
+                socket.close();
             } catch (IOException e) {
                 System.err.println("Error: " + e.getMessage());
             }
@@ -96,21 +92,20 @@ class Server {
     }
 
     public void start() throws ServerException {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         try {
             _server = new ServerSocket(PORT);
             System.out.println("Waiting for connections...");
             while (_running) {
-                _socket = _server.accept();
+                Socket socket = _server.accept();
                 executor.submit(() -> {
-                    new ClientRequest().process();
+                    new ClientRequest().process(socket);
                 });
             }
         } catch (IOException e) {
             throw new ServerException(e.getMessage());
         } finally {
             try {
-                _socket.close();
                 _server.close();
                 executor.shutdownNow();
             } catch (IOException ee) {
