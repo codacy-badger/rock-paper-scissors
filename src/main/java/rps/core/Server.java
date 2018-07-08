@@ -19,26 +19,27 @@ class Server {
     private BetOption[] _availableBets = new AvailableBetOption().getAll();
 
     private class ClientRequest {
-        private void registerNewPlayer(String playerName) {
+        private Player registerNewPlayer(String playerName) {
             try {
                 Player player = new RegisteredPlayer(playerName);
                 _players.addPlayer(player);
+                return player;
             } catch (DuplicatePlayerException e) {
-                System.err.println("Cannot register player: " + e.getMessage());
+                return new GuestPlayer(playerName);
             }
         }
 
-        private void validatePlayer(PrintStream out, String playerName) {
+        private Player setupPlayer(PrintStream out, String playerName) {
             try {
                 Player player = _players.getPlayerByName(playerName);
                 RegisteredPlayer registeredPlayer = (RegisteredPlayer) player;
                 player.addRound();
                 String greetings = registeredPlayer.greets(playerName);
-                out.println(greetings + registeredPlayer);
+                out.println(greetings);
+                return player;
             } catch (PlayerNotFoundException e) {
-                GuestPlayer guest = new GuestPlayer(playerName);
-                out.println(guest);
                 registerNewPlayer(playerName);
+                return new GuestPlayer(playerName);
             }
         }
 
@@ -56,12 +57,12 @@ class Server {
             return _availableBets[index];
         }
 
-        private void makeBet(PrintStream out, String playerBet) {
+        private void makeBet(PrintStream out, Player player, String playerBet) {
             try {
                 BetOption clientBet = parsePlayerBet(playerBet);
                 BetOption serverBet = serverBet();
-                String winnerText = new Bet(clientBet, serverBet).winner();
-                out.println(winnerText);
+                String winnerText = new Bet(player, clientBet, serverBet).winner();
+                out.print(winnerText + "\n" + player + "\n");
             } catch (InvalidBetException e) {
                 out.println("Invalid bet: " + e.getMessage());
             }
@@ -77,8 +78,8 @@ class Server {
                 String playerBet = split[1];
                 System.out.println("Player: " + playerName + ", Bet: " + playerBet);
 
-                validatePlayer(out, playerName);
-                makeBet(out, playerBet);
+                Player player = setupPlayer(out, playerName);
+                makeBet(out, player, playerBet);
 
                 socket.close();
             } catch (IOException e) {
