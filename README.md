@@ -1,8 +1,9 @@
 # Rock Paper Scissors
-This is a Rock, Paper, Scissors multiplayer game server and client.
+This is a Rock, Paper, Scissors multiplayer game.
 
 ## Prerequisites
 Java 8
+Maven
 
 ## Build
 ```
@@ -14,11 +15,10 @@ Java 8
 ```
 ## Run Server
 ```
-> cd target
-> java -jar server.jar
+> java -jar target/server.jar
 ```
 ## Run Client(s)
+Choose from 0 to 2 to make a bet. Press "q" to exit.
 ```
-> cd target
-> java -jar client.jar
+> java -jar target/client.jar
 ```
