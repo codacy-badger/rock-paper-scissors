@@ -8,6 +8,6 @@ public class RegisteredPlayer extends Player implements Greetings {
 
     @Override
     public String toString() {
-        return "[REG] " + getName() + " | round: " + getRounds();
+        return "[REG] " + super.toString();
     }
 }

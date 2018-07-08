@@ -8,6 +8,6 @@ public class GuestPlayer extends Player {
 
     @Override
     public String toString() {
-        return "[GUEST] " + getName() + " | round: " + getRounds();
+        return "[GUEST] " + super.toString();
     }
 }
