@@ -3,14 +3,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>rps</groupId>
     <artifactId>rps</artifactId>
-    <version>1</version>
+    <version>1.0</version>
     <name>rps</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.testng>6.8.7</version.testng>
+        <version.testng>6.9.9</version.testng>
+        <server.main>AppServer</server.main>
+        <client.main>AppClient</client.main>
     </properties>
 
     <dependencies>
@@ -29,7 +31,7 @@
                 <version>2.4.1</version>
                 <executions>
                     <execution>
-                        <id>build-first</id>
+                        <id>${server.main}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
@@ -38,14 +40,14 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>rps.AppServer</mainClass>
+                                    <mainClass>${project.name}.${server.main}</mainClass>
                                 </transformer>
                             </transformers>
-                            <finalName>server</finalName>
+                            <finalName>${server.main}</finalName>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>build-second</id>
+                        <id>${client.main}</id>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
@@ -54,13 +56,23 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>rps.AppClient</mainClass>
+                                    <mainClass>${project.name}.${client.main}</mainClass>
                                 </transformer>
                             </transformers>
-                            <finalName>client</finalName>
+                            <finalName>${client.main}</finalName>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.7</version>
             </plugin>
         </plugins>
     </build>

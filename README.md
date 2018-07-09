@@ -9,7 +9,7 @@ Maven
 
 ## Build
 ```
-> mvn package
+> mvn install
 ```
 ## Test
 ```
@@ -17,14 +17,14 @@ Maven
 ```
 ## Run Server
 ```
-> java -jar target/server.jar
+> java -jar target/AppServer.jar
 ```
 ## Run Client(s)
 Play the game based on your input.
 ```
-java -jar target/client.jar
+java -jar target/AppClient.jar
 ```
 The player 'Gil' bets '1' ten times.
 ```
-java -jar target/client.jar Gil 1 10
+java -jar target/AppClient.jar Gil 1 10
 ```
