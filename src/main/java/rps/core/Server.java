@@ -18,25 +18,18 @@ class Server {
 
     private class ClientRequest {
         private Player registerNewPlayer(String playerName) {
-            try {
-                Player player = new RegisteredPlayer(playerName);
-                _players.addPlayer(player);
-                return player;
-            } catch (DuplicatePlayerException e) {
-                return new GuestPlayer(playerName);
-            }
+            _players.addPlayer(new RegisteredPlayer(playerName));
+            return new GuestPlayer(playerName);
         }
 
         private Player setupPlayer(PrintStream out, String playerName) {
             try {
-                Player player = _players.getPlayerByName(playerName);
-                RegisteredPlayer registeredPlayer = (RegisteredPlayer) player;
-                String greetings = registeredPlayer.greets(playerName);
+                RegisteredPlayer player = _players.getPlayerByName(playerName);
+                String greetings = player.greets(playerName);
                 out.println(greetings);
                 return player;
             } catch (PlayerNotFoundException e) {
-                registerNewPlayer(playerName);
-                return new GuestPlayer(playerName);
+                return registerNewPlayer(playerName);
             }
         }
 

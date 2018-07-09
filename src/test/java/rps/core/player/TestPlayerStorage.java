@@ -6,21 +6,21 @@ import org.testng.annotations.Test;
 public class TestPlayerStorage {
 
     @Test
-    public void testAddPlayer() throws DuplicatePlayerException {
+    public void testAddPlayer() {
         PlayerStorage storage = new PlayerStorage();
-        storage.addPlayer(new GuestPlayer("joao"));
+        storage.addPlayer(new RegisteredPlayer("joao"));
         Assert.assertTrue(storage.size() == 1);
         storage.addPlayer(new RegisteredPlayer("elvas"));
         Assert.assertTrue(storage.size() == 2);
     }
 
-    @Test(expectedExceptions = DuplicatePlayerException.class)
-    public void testDuplicatePlayer() throws DuplicatePlayerException {
+    @Test
+    public void testDuplicatePlayer() {
         PlayerStorage storage = new PlayerStorage();
-        storage.addPlayer(new GuestPlayer("rafael"));
+        storage.addPlayer(new RegisteredPlayer("rafael"));
         Assert.assertTrue(storage.size() == 1);
         storage.addPlayer(new RegisteredPlayer("rafael"));
-        Assert.fail();
+        Assert.assertTrue(storage.size() == 1);
     }
 
     @Test(expectedExceptions = PlayerNotFoundException.class)
@@ -30,8 +30,8 @@ public class TestPlayerStorage {
     }
 
     @Test
-    public void testGetPlayer() throws PlayerNotFoundException, DuplicatePlayerException {
-        Player player = new GuestPlayer("sporting");
+    public void testGetPlayer() throws PlayerNotFoundException {
+        RegisteredPlayer player = new RegisteredPlayer("sporting");
         PlayerStorage storage = new PlayerStorage();
         storage.addPlayer(player);
         Assert.assertTrue(storage.size() == 1);
