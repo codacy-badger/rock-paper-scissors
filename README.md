@@ -20,6 +20,11 @@ Maven
 > java -jar target/server.jar
 ```
 ## Run Client(s)
+Play the game based on your input.
 ```
-> java -jar target/client.jar
+java -jar target/client.jar
+```
+The player 'Gil' bets '1' ten times.
+```
+java -jar target/client.jar Gil 1 10
 ```
