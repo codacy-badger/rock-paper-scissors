@@ -36,14 +36,14 @@ class Client {
         for (int i = 0; i < bets.length; i++) {
             sb.append(" (" + i + ")" + bets[i]);
         }
-        sb.append("\n> ");
+        sb.append("\n");
         return sb.toString();
     }
 
     private String welcomePlayer(String[] args) throws IOException {
         InputStream inputStream = args.length > 0 ? new ByteArrayInputStream((args[0]+"\n").getBytes()) : System.in;
         BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
-        System.out.print("Enter your name to play Rock Paper Scissors!\n> ");
+        System.out.println("Enter your name to play Rock Paper Scissors!");
         String playerName = input.readLine();
         return playerName;
     }
