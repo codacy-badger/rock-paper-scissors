@@ -8,7 +8,7 @@ public abstract class Player {
 
     Player(String name) {
         _name = name;
-        _rounds = 1;
+        _rounds = 0;
         _winCount = 0;
     }
 

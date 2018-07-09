@@ -31,7 +31,6 @@ class Server {
             try {
                 Player player = _players.getPlayerByName(playerName);
                 RegisteredPlayer registeredPlayer = (RegisteredPlayer) player;
-                player.addRound();
                 String greetings = registeredPlayer.greets(playerName);
                 out.println(greetings);
                 return player;
@@ -60,6 +59,7 @@ class Server {
                 BetOption clientBet = parsePlayerBet(playerBet);
                 BetOption serverBet = serverBet();
                 String winnerText = new Bet(player, clientBet, serverBet).winner();
+                player.addRound();
                 out.print(winnerText + "\n" + player + "\n");
             } catch (InvalidBetException e) {
                 out.println("Invalid bet: " + e.getMessage());
