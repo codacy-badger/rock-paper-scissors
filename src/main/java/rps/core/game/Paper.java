@@ -11,7 +11,7 @@ public class Paper extends BetOption {
     }
 
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         return o instanceof Paper && getName().equals(((Paper) o).getName());
     }
 }

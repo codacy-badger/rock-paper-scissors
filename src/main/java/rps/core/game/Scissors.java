@@ -11,7 +11,7 @@ public class Scissors extends BetOption {
     }
 
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         return o instanceof Scissors && getName().equals(((Scissors) o).getName());
     }
 }

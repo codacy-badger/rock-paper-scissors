@@ -57,9 +57,9 @@ class Client {
 
     private int getNumberGames(String[] args) {
         try {
-            return args.length > 2 ? Integer.parseInt(args[2]) : Utils.DEFAULT_NUM_GAMES;
+            return args.length > 2 ? Integer.parseInt(args[2]) : Utils.NUM_GAMES;
         } catch (NumberFormatException e) {
-            return 1;
+            return Utils.NUM_GAMES;
         }
     }
 

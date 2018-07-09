@@ -84,7 +84,7 @@ class Server {
     }
 
     public void start() throws RpsException {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(Utils.NUM_THREADS);
         try {
             _server = new ServerSocket(Utils.PORT);
             System.out.println("Waiting for connections...");
@@ -103,7 +103,7 @@ class Server {
             } catch (IOException ee) {
                 throw new RpsException(ee.getMessage());
             } catch (NullPointerException e) {
-                throw new RpsException("Port " + Utils.PORT + "is already being used.");
+                throw new RpsException("Port " + Utils.PORT + " is already being used.");
             }
         }
     }
