@@ -16,11 +16,6 @@ public abstract class BetOption {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(_name);
-    }
-
-    @Override
     public String toString() {
         return _name;
     }
