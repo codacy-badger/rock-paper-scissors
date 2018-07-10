@@ -1,5 +1,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/joaofranciscosantos/rock-paper-scissors/badge)](https://www.codefactor.io/repository/github/joaofranciscosantos/rock-paper-scissors)
 [![Build Status](https://travis-ci.org/joaofranciscosantos/rock-paper-scissors.svg?branch=master)](https://travis-ci.org/joaofranciscosantos/rock-paper-scissors)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f8854cde121478bb15047df0e1d1170)](https://www.codacy.com/app/joao.francis.santos/rock-paper-scissors?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=joaofranciscosantos/rock-paper-scissors&amp;utm_campaign=Badge_Grade)
 [![Known Vulnerabilities](https://snyk.io/test/github/joaofranciscosantos/rock-paper-scissors/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/joaofranciscosantos/rock-paper-scissors?targetFile=pom.xml)
 # Rock Paper Scissors
 This is a Rock, Paper, Scissors multiplayer game.
