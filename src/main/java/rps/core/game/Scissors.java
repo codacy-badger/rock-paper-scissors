@@ -1,5 +1,7 @@
 package rps;
 
+import java.util.Objects;
+
 public class Scissors extends BetOption {
     Scissors() {
         super("Scissors");
@@ -12,6 +14,6 @@ public class Scissors extends BetOption {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Scissors && getName().equals(((Scissors) o).getName());
+        return o instanceof Scissors && Objects.equals(getName(), ((Scissors) o).getName());
     }
 }

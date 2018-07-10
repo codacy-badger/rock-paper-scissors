@@ -1,5 +1,7 @@
 package rps;
 
+import java.util.Objects;
+
 public class Rock extends BetOption {
     Rock() {
         super("Rock");
@@ -12,6 +14,6 @@ public class Rock extends BetOption {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Rock && getName().equals(((Rock) o).getName());
+        return o instanceof Rock && Objects.equals(getName(), ((Rock) o).getName());
     }
 }
