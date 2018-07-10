@@ -1,5 +1,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/joaofranciscosantos/rock-paper-scissors/badge)](https://www.codefactor.io/repository/github/joaofranciscosantos/rock-paper-scissors)
 [![Known Vulnerabilities](https://snyk.io/test/github/joaofranciscosantos/rock-paper-scissors/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/joaofranciscosantos/rock-paper-scissors?targetFile=pom.xml)
+[![Coverage Status](https://coveralls.io/repos/github/joaofranciscosantos/rock-paper-scissors/badge.svg?branch=master)](https://coveralls.io/github/joaofranciscosantos/rock-paper-scissors?branch=master)
 # Rock Paper Scissors
 This is a Rock, Paper, Scissors multiplayer game.
 <br/>
