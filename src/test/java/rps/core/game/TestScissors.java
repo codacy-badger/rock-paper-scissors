@@ -11,6 +11,11 @@ public class TestScissors {
     }
 
     @Test
+    public void testHashCode() {
+        Assert.assertEquals(new Scissors().hashCode(), new Scissors().hashCode());
+    }
+
+    @Test
     public void testHasEdgePaper() {
         BetOption[] bets = new Scissors().hasAnEdge();
         Assert.assertTrue(bets.length == 1);

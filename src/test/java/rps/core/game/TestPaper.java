@@ -11,6 +11,11 @@ public class TestPaper {
     }
 
     @Test
+    public void testHashCode() {
+        Assert.assertEquals(new Paper().hashCode(), new Paper().hashCode());
+    }
+
+    @Test
     public void testHasEdgeRock() {
         BetOption[] bets = new Paper().hasAnEdge();
         Assert.assertTrue(bets.length == 1);

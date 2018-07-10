@@ -11,6 +11,11 @@ public class TestRock {
     }
 
     @Test
+    public void testHashCode() {
+        Assert.assertEquals(new Rock().hashCode(), new Rock().hashCode());
+    }
+
+    @Test
     public void testHasEdgeScissors() {
         BetOption[] bets = new Rock().hasAnEdge();
         Assert.assertTrue(bets.length == 1);

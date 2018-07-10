@@ -1,5 +1,7 @@
 package rps;
 
+import java.util.Objects;
+
 public abstract class BetOption {
     private String _name;
 
@@ -11,6 +13,11 @@ public abstract class BetOption {
 
     public String getName() {
         return _name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(_name);
     }
 
     @Override
